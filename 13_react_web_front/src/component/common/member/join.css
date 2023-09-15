@@ -1,0 +1,41 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.join-wrap {
+  width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+}
+.join-title {
+  text-align: center;
+  font-family: ns-eb;
+  font-size: 30px;
+  color: #016a70;
+  padding: 30px;
+}
+.join-input-wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.join-input-wrap > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.join-input-wrap > div > .label {
+  width: 30%;
+}
+.join-input-wrap > div > .label > label {
+  font-size: 1.1em;
+  font-family: ns-b;
+  color: #016a70;
+}
+.join-input-wrap > div > .input {
+  width: 70%;
+}

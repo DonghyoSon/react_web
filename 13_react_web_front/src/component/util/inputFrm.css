@@ -1,0 +1,13 @@
+.input-form {
+  /* <input>이 필요한 곳에 <div>로 감싸고, 
+  <div>의 크기를 조절하면 <input>이 알아서 크기 조절이 되도록 설정*/
+  display: block;
+  width: 100%;
+
+  padding: 0.7rem;
+  background-color: #fff;
+  outline: none;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
