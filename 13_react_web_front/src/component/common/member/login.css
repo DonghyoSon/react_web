@@ -1,0 +1,43 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.login-wrap {
+  width: 400px;
+  margin: 0 auto;
+}
+.login-title {
+  text-align: center;
+  color: #016a70;
+  font-family: ns-black;
+  font-size: 30px;
+  padding: 50px;
+}
+.input-wrap > label {
+  display: block;
+  padding: 10px 0px;
+  color: #016a70;
+  font-family: ns-b;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+}
+.search-box > a {
+  font-size: 0.9em;
+  height: 20px;
+  line-height: 20px;
+}
+.search-box > a:hover {
+  text-decoration: underline;
+}
+.search-box > span {
+  font-size: 22px;
+  transform: rotate(90deg);
+}
+.login-btn-box {
+  margin: 20px 0px;
+}

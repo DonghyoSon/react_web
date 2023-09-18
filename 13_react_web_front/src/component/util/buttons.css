@@ -1,0 +1,25 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.btn {
+  width: 100%;
+  padding: 0.7rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: ns-eb;
+  border: none;
+  outline: none;
+  color: #fff;
+}
+.st1 {
+  background-color: #016a70;
+}
+.st2 {
+  background-color: #d2de32;
+}
+.st3 {
+  background-color: #a2c579;
+}
