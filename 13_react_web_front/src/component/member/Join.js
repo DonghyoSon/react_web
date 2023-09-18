@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./join.css";
-import Input from "../../util/InputFrm";
+import Input from "../util/InputFrm";
 import axios from "axios";
-import { Button1, Button2, Button3 } from "../../util/Buttons"; //export한 형태 그대로 import된다.
+import { Button1, Button2, Button3 } from "../util/Buttons"; //export한 형태 그대로 import된다.
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 

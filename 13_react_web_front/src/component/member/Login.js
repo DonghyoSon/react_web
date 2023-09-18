@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./login.css";
-import Input from "../../util/InputFrm";
+import Input from "../util/InputFrm";
 import { Link, useNavigate } from "react-router-dom";
-import { Button1, Button2, Button3 } from "../../util/Buttons";
+import { Button1, Button2, Button3 } from "../util/Buttons";
 import axios from "axios";
 import Swal from "sweetalert2";
 

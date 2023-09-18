@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Footer from "./component/common/Footer";
 import Header from "./component/common/Header";
-import Join from "./component/common/member/Join";
-import Login from "./component/common/member/Login";
+import Join from "./component//member/Join";
+import Login from "./component/member/Login";
 import { useState } from "react";
-import MemberMain from "./component/common/member/MemberMain";
+import MemberMain from "./component/member/MemberMain";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
