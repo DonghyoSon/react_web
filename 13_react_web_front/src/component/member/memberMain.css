@@ -1,0 +1,63 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.mypage-wrap {
+  width: 1200px;
+  margin: 30px auto;
+}
+
+.my-title {
+  color: #016a70;
+  font-size: 24px;
+  font-family: ns-b;
+  padding: 10px 0px;
+  border-bottom: 2px solid #016a70;
+}
+.my-side {
+  width: 200px;
+}
+.my-side > ul {
+  list-style-type: none;
+  box-sizing: border-box;
+  padding-top: 30px;
+  margin: 0;
+}
+.my-side > ul > li > a {
+  display: block;
+  padding: 10px;
+  color: #016a70;
+  font-family: ns-b;
+  position: relative;
+}
+.my-side > ul > li > a > span {
+  position: absolute;
+  right: 0;
+}
+.my-side > ul > li > a.active-side {
+  background-color: #016a70;
+  color: #fff;
+}
+.my-side > ul > li > a.active-side > span {
+  color: #fff;
+}
+
+.my-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+.current-content {
+  width: 900px;
+}
+.my-content-wrap {
+  width: 700px;
+  margin: 0 auto;
+}
+.my-content-title {
+  padding: 30px 0px;
+  color: #016a70;
+  font-family: ns-b;
+  font-size: 20px;
+}

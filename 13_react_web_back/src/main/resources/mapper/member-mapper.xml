@@ -8,4 +8,16 @@
 	<insert id="insertMember">
 		insert into member_tbl values(member_seq.nextval, #{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, 2)
 	</insert>
+	
+	<update id="changePhone">
+		update member_tbl set member_phone=#{memberPhone} where member_no=#{memberNo}
+	</update>
+	
+	<delete id="delete">
+		delete from member_tbl where member_id=#{memberId}
+	</delete>
+	
+	<update id="changePw">
+		update member_tbl set member_pw=#{memberPw} where member_id=#{memberId}
+	</update>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.iei.member.model.service.MemberService;
@@ -57,8 +58,31 @@ public class MemberController {
 		return result;
 	}
 	
-	@GetMapping(value="/mypage")
+	@PostMapping(value="/getMember")
 	public Member mypage(@RequestAttribute String memberId) {
 		return memberService.selectOneMember(memberId);
+	}
+	
+	@PostMapping(value="/changePhone")
+	public int changePhone(@RequestBody Member member) {
+		return memberService.changePhone(member);
+	}
+	
+	@PostMapping(value="/delete")
+	public int delete(@RequestAttribute String memberId) {
+		return memberService.delete(memberId);
+	}
+	
+	@PostMapping(value="/pwCheck")
+	public int pwCheck(@RequestBody Member member, @RequestAttribute String memberId) //JwtFilter를 통해 memberId를 얻음 
+	{
+		member.setMemberId(memberId);
+		return memberService.pwCheck(member);
+	}
+	
+	@PostMapping(value="/changePw")
+	public int changePw(@RequestBody Member member, @RequestAttribute String memberId) {
+		member.setMemberId(memberId);
+		return memberService.changePwMember(member);
 	}
 }

@@ -49,9 +49,9 @@ const HeaderLink = (props) => {
     <div className="header-link">
       {isLogin ? (
         <>
-          <Link to="/member/mypage" title="마이페이지">
+          <Link to="/member" title="마이페이지">
             {/*title 속성: 마우스를 해당 요소에 올리면 title 속성값이 표시됨 */}
-            <span className="material-icons">face</span>
+            <span className="material-icons">person</span>
           </Link>
           <Link to="#" title="로그아웃" onClick={logout}>
             <span className="material-icons">logout</span>

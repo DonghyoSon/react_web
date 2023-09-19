@@ -29,7 +29,7 @@ public class JwtFilter extends OncePerRequestFilter {
 		String auth = request.getHeader(HttpHeaders.AUTHORIZATION);//헤더 정보 중 인증키가 전달되는 값을 추출
 		System.out.println("filter/auth: "+auth);
 		//1-2. 인증값을 안 보냈거나, 시작값이 'Bearer '가 아닌 경우
-		if(auth == null || !auth.startsWith("Bearer ")) {
+		if(auth == null || !auth.startsWith("Bearer ") || auth.indexOf("null")!= -1) {
 			System.out.println("인증이 없거나, 잘못됨");
 			filterChain.doFilter(request, response);
 			return; //함수를 종료

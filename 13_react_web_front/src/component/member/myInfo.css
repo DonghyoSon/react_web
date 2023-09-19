@@ -1,0 +1,35 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.my-info-tbl {
+  width: 100%;
+  border-spacing: 0;
+  border-top: 2px solid #016a70;
+  border-bottom: 2px solid #016a70;
+  padding: 10px;
+}
+.my-info-tbl > tbody > tr > td:first-child {
+  width: 30%;
+}
+.my-info-tbl > tbody > tr > td {
+  padding: 20px 10px;
+}
+#member-phone {
+  padding: 0;
+}
+#member-phone > div {
+  display: flex;
+  justify-content: space-between;
+}
+#member-phone > div > input {
+  width: 60%;
+}
+#member-phone > div > button {
+  width: 30%;
+}
+.delete-btn-box {
+  padding-top: 50px;
+}
