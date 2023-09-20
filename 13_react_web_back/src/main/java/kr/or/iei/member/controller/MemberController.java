@@ -47,7 +47,7 @@ public class MemberController {
 	@PostMapping(value="/join")
 	public int join(@RequestBody Member member) {
 		System.out.println(member);
-		//service 호출 시 메서드 이름이 Member로 끝나면서 매개변수가 Member타입이면 비밀번호 암호화 수행
+		//service 호출 시 메서드 이름이 Member로 끝나면서 반환타입이 int이고, 매개변수가 Member타입이면 비밀번호 암호화 수행
 		int result = memberService.insertMember(member);
 		return result;
 	}
@@ -81,8 +81,8 @@ public class MemberController {
 	}
 	
 	@PostMapping(value="/changePw")
-	public int changePw(@RequestBody Member member, @RequestAttribute String memberId) {
+	public int pwChange(@RequestBody Member member, @RequestAttribute String memberId) {
 		member.setMemberId(memberId);
-		return memberService.changePwMember(member);
+		return memberService.pwChangeMember(member); //리턴 인트 /매개변수 멤버타입 /서비스 소속 /메서드명 마지막 멤버
 	}
 }

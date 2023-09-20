@@ -1,0 +1,25 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.paging-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.paging-wrap > .page-item {
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  padding: 5px;
+  cursor: pointer;
+}
+.page-item.active-page {
+  background-color: #016a70;
+  color: #fff;
+  border-radius: 5px;
+}

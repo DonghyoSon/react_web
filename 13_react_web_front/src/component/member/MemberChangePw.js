@@ -55,6 +55,7 @@ const MemberChangePw = (props) => {
   const [memberPwRe, setMemberPwRe] = useState("");
   const token = window.localStorage.getItem("token");
 
+  //현재 비밀번호 확인
   const pwCheck = (props) => {
     axios
       .post(
@@ -78,6 +79,8 @@ const MemberChangePw = (props) => {
       });
   };
 
+  /*
+  //실패
   const changePw = (props) => {
     if (memberPw != memberPwRe) {
       Swal.fire({
@@ -86,7 +89,7 @@ const MemberChangePw = (props) => {
     } else {
       axios
         .post(
-          "/member/changePw",
+          "/member/changePwMember",
           { memberPw: memberPw },
           {
             headers: {
@@ -99,7 +102,36 @@ const MemberChangePw = (props) => {
         });
     }
   };
-  //   const changePw = (props) => {};
+  */
+  //비밀번호 변경 - 선생님 답안
+  const changePw = () => {
+    if (memberPw !== "" && memberPw === memberPwRe) {
+      axios
+        .post(
+          "/member/changePw",
+          { memberPw: memberPw }, //key와 value가 같을 때는 key만 작성하여도 무방({memberPw})
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data === 1) {
+            //비밀번호 변경 성공시, 비밀번호 변경 페이지 처음으로 이동
+            setIsPwauth(false);
+            setCurrPw(""); //현재 비밀번호 초기화
+            setMemberPw("");
+            setMemberPwRe("");
+          } else {
+            Swal.fire("비밀번호 변경 중 문제가 발생했습니다.");
+          }
+        });
+    } else {
+      Swal.fire("입력한 새 비밀번호가 일치하지 않습니다.");
+    }
+  };
+
   return (
     <div className="my-content-wrap">
       <div className="my-content-title">비밀번호 변경</div>

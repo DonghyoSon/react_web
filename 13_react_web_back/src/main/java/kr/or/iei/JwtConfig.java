@@ -27,7 +27,7 @@ public class JwtConfig {
 				.and()
 				.authorizeHttpRequests() //요청에 대한 권한 설정
 				.antMatchers(HttpMethod.POST,"/member/login", "/member/join").permitAll() //permitAll(): POST요청 중, '/member/login', '/member/join'은 허용
-				.antMatchers(HttpMethod.POST, "/member/**").authenticated() //authenticated(): POST요청 중, '/member/'로 시작하면 반드시 인증 수행
+				.antMatchers(HttpMethod.POST, "/member/**", "/board/insert").authenticated() //authenticated(): POST요청 중, '/member/'로 시작하면 반드시 인증 수행
 				.and()
 				.sessionManagement() //세션관련 설정
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS) //STATELESS: 세션을 상태가 없는 상태로 운영한다. -> JWT로 인증하는 경우 사용하는 설정

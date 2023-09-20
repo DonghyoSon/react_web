@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.or.iei.board.model.dao.BoardDao">
+
+	<!-- 전체 게시물 수(공개된 게시물) -->
+	<select id="totalCount" resultType="int">
+		select count(*) from board where board_status=1 
+	</select>
+
+	<!-- 페이지 네비게이션 및 게시물 개수 조회 --> 
+ 	<select id="selectBoardList" resultType="board">
+ 		SELECT * FROM 
+		    (SELECT ROWNUM AS RNUM, B.* FROM
+		        (SELECT
+		            BOARD_NO, 
+		            BOARD_TITLE, 
+		            BOARD_IMG, 
+		            BOARD_WRITER, 
+		            MEMBER_ID, 
+		            TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') AS BOARD_DATE
+		        FROM BOARD 
+		        JOIN MEMBER_TBL ON (BOARD_WRITER = MEMBER_NO) 
+		        WHERE BOARD_STATUS=1
+		        ORDER BY 1 DESC)B)
+		WHERE RNUM BETWEEN #{start} AND #{end}
+ 	</select>
+</mapper>

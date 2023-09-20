@@ -5,6 +5,7 @@ import Join from "./component//member/Join";
 import Login from "./component/member/Login";
 import { useEffect, useState } from "react";
 import MemberMain from "./component/member/MemberMain";
+import BoardMain from "./component/board/BoardMain";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -35,6 +36,10 @@ function App() {
           <Route
             path="/member/*"
             element={<MemberMain setIsLogin={setIsLogin} isLogin={isLogin} />}
+          />
+          <Route
+            path="/board/*"
+            element={<BoardMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
         </Routes>
       </div>
