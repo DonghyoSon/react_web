@@ -1,15 +1,21 @@
 package kr.or.iei.board.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.iei.PageInfo;
 import kr.or.iei.Pagenation;
 import kr.or.iei.board.model.dao.BoardDao;
+import kr.or.iei.board.model.vo.Board;
+import kr.or.iei.board.model.vo.BoardFile;
+import kr.or.iei.member.model.dao.MemberDao;
+import kr.or.iei.member.model.vo.Member;
 
 @Service
 public class BoardService {
@@ -17,6 +23,8 @@ public class BoardService {
 	private BoardDao boardDao;
 	@Autowired
 	private Pagenation pagenation;
+	@Autowired
+	private MemberDao memberDao;
 
 	//게시물 조회
 	public Map boardList(int reqPage) {
@@ -38,5 +46,45 @@ public class BoardService {
 		map.put("pi", pi);
 		
 		return map;
+	}
+
+	//게시글 작성
+	@Transactional
+	public int insertBoard(Board b, ArrayList<BoardFile> fileList) {
+		System.out.println(b);
+		System.out.println(fileList);
+		
+		//Board테이블에 insert하기 위해서는 회원번호를 알아야한다.
+		//작성자 정보를 현재 아이디만 알고있다. -> Board테이블에는 회원번호가 외래키로 설정되어있다.
+		//아이디를 이용하여 회원번호를 구해온다(회원정보를 조회하여 회원 정보 중 회원번호를 사용한다)
+		Member member = memberDao.selectOneMember(b.getMemberId());
+		System.out.println("memberNo: "+member.getMemberNo());
+		b.setBoardWriter(member.getMemberNo());
+		System.out.println("BoardWriter: "+b.getBoardWriter());
+		System.out.println("BoardNo: "+b.getBoardNo());
+		int result = boardDao.insertBoard(b);
+		for(BoardFile boardFile : fileList) {
+			boardFile.setBoardNo(b.getBoardNo()); //board-mapper의 <selectKey>에서 구해진 boardNo를 삽입
+			result += boardDao.insertBoardFile(boardFile);
+		}
+		if(result == 1 + fileList.size()) {
+			return result;
+		}else {
+			return 0;
+		}
+	}
+
+	//게시글 상세보기
+	public Board selectOneBoard(int boardNo) {
+		Board b = boardDao.selectOneBoard(boardNo);
+//		List fileList = boardDao.selectOneBoardFile(boardNo);
+//		b.setFileList(fileList);
+		return b;
+	}
+
+	//게시글 파일 다운로드
+	public BoardFile getBoardFile(int boardFileNo) {
+		// TODO Auto-generated method stub
+		return boardDao.getBoardFile(boardFileNo);
 	}
 }

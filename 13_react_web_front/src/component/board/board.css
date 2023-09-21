@@ -127,3 +127,56 @@ A2C579 /rgb(162, 197, 121)
 .file-zone > p:hover {
   background-color: rgba(210, 222, 50, 0.2);
 }
+.board-view-wrap {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.board-view-wrap > div {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+.board-view-wrap > .board-view-title {
+  font-family: ns-b;
+  font-size: 1.2em;
+  border-top: 1px solid #016a70;
+}
+.board-view-info {
+  display: flex;
+}
+.board-view-info > div {
+  margin-right: 10px;
+  font-size: 0.9em;
+}
+.board-view-thumbnail {
+  text-align: center;
+}
+.board-view-thumbnail > img {
+  max-width: 100%; /*최대 너비는 부모의 너비를 벗어나지 않게*/
+}
+.board-view-detail {
+  min-height: 400px; /*기본 고정 높이 값*/
+  border-bottom: 1px solid #016a70;
+}
+.board-view-file {
+  min-height: 30px;
+}
+.board-view-file > .board-file {
+  padding: 10px;
+  position: relative;
+}
+.board-view-file > .board-file:hover {
+  background-color: rgba(210, 222, 50, 0.2);
+}
+.board-file > .file-icon {
+  position: absolute;
+  top: 15px;
+  cursor: pointer;
+}
+.board-file > .file-name {
+  margin-left: 36px;
+}
+.board-content-box .ql-container {
+  height: 400px;
+}

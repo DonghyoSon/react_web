@@ -1,4 +1,6 @@
 npm install react-router-dom
 npm install sweetalert2
 npm install axios
-npm istall react-quill
+npm install react-quill
+npm install quill-image-resize-module-react
+npm install quill-image-resize-module-react

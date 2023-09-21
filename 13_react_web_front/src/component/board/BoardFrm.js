@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button1 } from "../util/Buttons";
 import Input from "../util/InputFrm";
+import TextEditor from "../util/TextEditor";
 
 const BoardFrm = (props) => {
   const boardTitle = props.boardTitle;
@@ -115,14 +116,19 @@ const BoardFrm = (props) => {
         </div>
       </div>
       <div className="board-content-box">
-        <textarea
+        {/* <textarea
           onChange={(e) => {
             const changeValue = e.currentTarget.value;
             setBoardDetail(changeValue);
           }}
         >
           {boardDetail}
-        </textarea>
+        </textarea> */}
+        <TextEditor
+          data={boardDetail}
+          setData={setBoardDetail}
+          url="/board/contentImg"
+        />
       </div>
       <div className="board-btn-box">
         <Button1 text="작성하기" clickEvent={buttonEvent} />

@@ -24,4 +24,54 @@
 		        ORDER BY 1 DESC)B)
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
+ 	
+ 	<!-- 게시글 작성 -->
+ 	<insert id="insertBoard">
+ 		insert into board values(board_seq.nextval, #{boardTitle}, #{boardImg}, #{boardDetail}, #{boardWriter}, 1, sysdate)
+ 	
+ 	<!-- 회원번호를 service에서 가져오지 않고 서브쿼리를 사용하는 방법 
+ 		insert into board values(board_seq.nextval, #{boardTitle}, #{boardImg}, #{boardDetail}, (select member_no from member_tbl where member_id=#{memberId}, 1, sysdate) 
+ 	-->
+ 		<selectKey resultType="int" keyProperty="boardNo" order="AFTER">
+ 			select max(board_no) from board
+ 		</selectKey><!-- 'insertBoard' 수행 후 작성된 쿼리를 수행하여, int타입으로 boardNo속성에 삽입: insertBoardFile에서 사용되는 boardNo를 구하기 위함 -->
+ 	</insert>
+ 	
+ 	<!-- 게시글 작성 파일 업로드 -->
+ 	<insert id="insertBoardFile">
+ 		insert into board_file values(board_file_seq.nextval, #{boardNo}, #{filename}, #{filepath})
+ 	</insert>
+ 	
+ 	<!-- 게시글 상세보기 -->
+ 	<select id="selectOneBoard" resultMap="getBoard">
+ 		select board_no, board_title, board_img, board_writer, member_id, board_detail, board_status, to_char(board_date, 'yyyy-mm-dd') as board_date from board join member_tbl on (board_writer = member_no) where board_no=#{boardNo}
+ 	</select>
+
+	<!--  게시글 상세보기 - 파일 -->
+	<select id="selectOneBoardFile" resultType="boardFile">
+		select * from board_file where board_no=#{boardNo}
+	</select>
+	
+	<resultMap type="board" id="getBoard">
+		<result column="board_no" property="boardNo"/>
+		<result column="board_title" property="boardTitle"/>
+		<result column="board_img" property="boardImg"/>
+		<result column="board_writer" property="boardWriter"/>
+		<result column="board_id" property="boardId"/>
+		<result column="board_detail" property="boardDetail"/>
+		<result column="board_status" property="boardStatus"/>
+		<result column="board_date" property="boardDate"/>
+		<collection
+			property="fileList"
+			select="selectOneBoardFile"
+			column="board_no"
+			javaType="java.util.List"
+			ofType="boardFile"
+		/>
+	</resultMap>
+	
+	<!-- 게시글 파일 다운로드 -->
+	<select id="getBoardFile" resultType="boardFile">
+		select * from board_file where board_file_no=#{boardFileNo}
+	</select>
 </mapper>

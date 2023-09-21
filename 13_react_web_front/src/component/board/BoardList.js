@@ -59,10 +59,18 @@ const BoardList = (props) => {
 
 const BoardItem = (props) => {
   const board = props.board;
+  const navigate = useNavigate();
+  const boardView = () => {
+    navigate("/board/view", { state: { boardNo: board.boardNo } });
+  };
   return (
-    <div className="board-item">
+    <div className="board-item" onClick={boardView}>
       <div className="board-item-img">
-        {board.boardImg === null ? <img src="/image/default.png" /> : ""}
+        {board.boardImg === null ? (
+          <img src="/image/default.png" />
+        ) : (
+          <img src={"/board/" + board.boardImg} />
+        )}
       </div>
       <div className="board-item-info">
         <div className="board-item-title">{board.boardTitle}</div>

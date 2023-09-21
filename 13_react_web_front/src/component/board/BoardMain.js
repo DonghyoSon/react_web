@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./board.css";
 import BoardList from "./BoardList";
 import BoardWrite from "./BoardWrite";
+import BoardView from "./BoardView";
 
 //<Route path="*">: path에 '*'이 들어가면 <Routes>의 가장 하단에 작성한다.
 const BoardMain = (props) => {
@@ -13,6 +14,7 @@ const BoardMain = (props) => {
       <div className="board-title">BOARD</div>
       <Routes>
         <Route path="write" element={<BoardWrite />} />
+        <Route path="view" element={<BoardView isLogin={isLogin} />} />
         <Route path="*" element={<BoardList isLogin={isLogin} />} />
       </Routes>
     </div>
