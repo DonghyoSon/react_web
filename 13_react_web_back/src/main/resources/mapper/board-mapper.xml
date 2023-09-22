@@ -74,4 +74,35 @@
 	<select id="getBoardFile" resultType="boardFile">
 		select * from board_file where board_file_no=#{boardFileNo}
 	</select>
+	
+	<!-- 게시글 삭제 - 조회 -->
+	<select id="selectBoardFileList" resultType="boardFile">
+		select * from board_file where board_no=#{boardNo}
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard">
+		delete from board where board_no=#{boardNo}
+	</delete>
+	
+	<!-- 게시물 수정 - 조회 -->
+	<select id="selectBoardFile" resultType="boardFile">
+		select * from board_file where board_file_no in 
+		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
+			#{fileNo}
+		</foreach>
+	</select>
+	
+	<!-- 게시물 수정 - 파일 삭제 -->
+	<delete id="deleteBoardFile">
+		delete from board_file where board_file_no in
+		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
+			#{fileNo}
+		</foreach>
+	</delete>
+	
+	<!-- 게시물 수정 - board테이블 변경 -->
+	<update id="updateBoard">
+		update board set board_title=#{boardTitle}, board_detail=#{boardDetail}, board_img=#{boardImg} where board_no=#{boardNo}
+	</update>
 </mapper>

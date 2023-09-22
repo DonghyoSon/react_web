@@ -123,6 +123,7 @@ A2C579 /rgb(162, 197, 121)
 .file-zone > p {
   margin: 0;
   padding: 5px;
+  position: relative;
 }
 .file-zone > p:hover {
   background-color: rgba(210, 222, 50, 0.2);
@@ -179,4 +180,21 @@ A2C579 /rgb(162, 197, 121)
 }
 .board-content-box .ql-container {
   height: 400px;
+}
+
+/*수정, 삭제 버튼*/
+.board-view-btn-zone {
+  padding: 20px 0px;
+}
+.board-view-btn-zone > button {
+  width: 80px;
+  margin-right: 20px;
+}
+
+/*게시글 수정의 삭제 아이콘*/
+.file-zone > p > .del-file-icon {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  cursor: pointer;
 }

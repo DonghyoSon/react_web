@@ -1,13 +1,17 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./board.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Button1 } from "../util/Buttons";
+import Swal from "sweetalert2";
 
 const BoardView = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
   const boardNo = location.state.boardNo;
   const [board, setBoard] = useState({});
+  const [member, setMember] = useState(null); //상세보기 - 삭제, 수정: 사용자 정보 조회를 위한 state
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -19,7 +23,56 @@ const BoardView = (props) => {
       .catch((res) => {
         console.log(res.response.status);
       });
+    if (isLogin) {
+      //로그인 확인
+      const token = window.localStorage.getItem("token"); //토큰 값을 같이 보냄
+      console.log(token);
+      axios
+        .post("/member/getMember", null, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setMember(res.data);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    }
   }, []);
+
+  //수정 버튼 함수
+  const modify = () => {
+    console.log("수정 이벤트");
+    navigate("/board/modify", { state: { board: board } });
+  };
+  //삭제 버튼 함수
+  const deleteBoard = () => {
+    console.log("삭제 이벤트");
+    Swal.fire({
+      icon: "warning",
+      text: "게시글을 삭제하시겠습니까?",
+      shoCanaelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        axios
+          .get("/board/delete/" + board.boardNo) //boardNo를 같이 보냄
+          .then((res) => {
+            console.log(res.data);
+            if (res.data === 1) {
+              navigate("/board");
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    });
+  };
 
   return (
     <div className="board-view-wrap">
@@ -47,6 +100,21 @@ const BoardView = (props) => {
         dangerouslySetInnerHTML={{ __html: board.boardDetail }} //텍스트 에디터를 사용할 경우
       >
         {/* {board.boardDetail} //텍스트 에디터를 사용하지 않을 경우*/}
+      </div>
+      <div className="board-view-btn-zone">
+        {/*이중 삼항연산 */}
+        {isLogin ? (
+          member && member.memberNo === board.boardWriter ? (
+            <>
+              <Button1 text="수정" clickEvent={modify} />
+              <Button1 text="삭제" clickEvent={deleteBoard} />
+            </>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

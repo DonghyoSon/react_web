@@ -32,4 +32,21 @@ public interface BoardDao {
 	//게시글 파일 다운로드
 	BoardFile getBoardFile(int boardFileNo);
 
+	//게시글 삭제 - 조회
+	List<BoardFile> selectBoardFileList(int boardNo);
+
+	//게시글 삭제
+	int deleteBoard(int boardNo);
+
+	//게시물 수정 - 조회
+	List<BoardFile> selectBoardFile(String[] delFileNo);
+
+	//게시물 수정 - 파일 삭제
+	int deleteBoardFile(String[] delFileNo);
+
+	//게시물 수정 - board테이블 변경
+	int updateBoard(Board b);
+
+	
+
 }
