@@ -105,4 +105,31 @@
 	<update id="updateBoard">
 		update board set board_title=#{boardTitle}, board_detail=#{boardDetail}, board_img=#{boardImg} where board_no=#{boardNo}
 	</update>
+	
+	<!-- 관리자 페이지 - 게시글 관리 -->
+	<select id="adminTotalCount" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<!-- 관리자 페이지 - 게시글 관리 -->
+	<select id="adminBoardList" resultType="board">
+		SELECT * FROM 
+		    (SELECT ROWNUM AS RNUM, B.* FROM
+		        (SELECT
+		            BOARD_NO, 
+		            BOARD_TITLE, 
+		            BOARD_WRITER, 
+		            MEMBER_ID, 
+		         	BOARD_STATUS,
+		            TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') AS BOARD_DATE
+		        FROM BOARD 
+		        JOIN MEMBER_TBL ON (BOARD_WRITER = MEMBER_NO) 
+		        ORDER BY 1 DESC)B)
+		WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 관리자 페이지 - 게시글 관리(공개여부) -->
+	<update id="changeStatus">
+		update board set board_status = #{boardStatus} where board_no=#{boardNo}
+	</update>
 </mapper>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./board.css";
 import axios from "axios";
-import Pagenation from "../common/Pagenation";
+import Pagenation from "../common/Pagination";
 import { Button1 } from "../util/Buttons";
 import { useNavigate } from "react-router-dom";
 

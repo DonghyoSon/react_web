@@ -1,4 +1,4 @@
-import "./pagenation.css";
+import "./pagination.css";
 
 const Pagenation = (props) => {
   const pageInfo = props.pageInfo;

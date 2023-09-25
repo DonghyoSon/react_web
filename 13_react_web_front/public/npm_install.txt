@@ -3,4 +3,5 @@ npm install sweetalert2
 npm install axios
 npm install react-quill
 npm install quill-image-resize-module-react
-npm install quill-image-resize-module-react
+npm install @mui/material @emotion/react @emotion/styled
+npm install swiper@6.8.4

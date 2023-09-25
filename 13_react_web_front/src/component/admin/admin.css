@@ -1,0 +1,63 @@
+/*
+016A70 /rgb(1, 106, 112)
+FFFFDD /rgb(255, 255, 221)
+D2DE32 /rgb(210, 222, 50)
+A2C579 /rgb(162, 197, 121)
+*/
+.admin-member-tbl-box {
+  width: 100%;
+  border-spacing: 0;
+}
+.admin-member-tbl-box > table td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #eee;
+}
+.admin-member-tbl-box > table > thead td {
+  background-color: #016a70;
+  color: #fff;
+}
+.admin-paging-wrap {
+  margin-top: 50px;
+}
+.admin-board-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.admin-board-tbl td {
+  text-align: center;
+  padding: 10px 5px;
+}
+.admin-board-tbl td.title-td {
+  text-align: left;
+}
+.admin-board-tbl td.title-td > div {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-board-tbl > table > thead td {
+  border-bottom: 2px solid #016a70;
+  border-top: 2px solid #016a70;
+  color: #016a70;
+  font-family: ns-b;
+}
+.admin-board-tbl > table > tbody td {
+  border-bottom: 1px solid #ccc;
+}
+.status-td .PrivateSwitchBase-input + span {
+  background-color: #fff;
+}
+.status-td .PrivateSwitchBase-input:checked + span {
+  background-color: #016a70;
+}
+.status-td
+  .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase
+  .MuiSwitch-track {
+  background-color: #016a70;
+}
+.title-td:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

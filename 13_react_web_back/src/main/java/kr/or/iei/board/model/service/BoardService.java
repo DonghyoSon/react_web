@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.iei.PageInfo;
-import kr.or.iei.Pagenation;
+import kr.or.iei.Pagination;
 import kr.or.iei.board.model.dao.BoardDao;
 import kr.or.iei.board.model.vo.Board;
 import kr.or.iei.board.model.vo.BoardFile;
@@ -22,7 +22,7 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 	@Autowired
-	private Pagenation pagenation;
+	private Pagination pagenation;
 	@Autowired
 	private MemberDao memberDao;
 
@@ -129,5 +129,23 @@ public class BoardService {
 		}else {			
 			return null;
 		}
+	}
+
+	//관리자 페이지 - 게시글 관리
+	public Map adminList(int reqPage) {
+		int totalCount = boardDao.adminTotalCount();
+		int pageNaviSize = 5;
+		int numPerPage = 10;
+		PageInfo pi = pagenation.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List boardList = boardDao.adminBoardList(pi);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pi", pi);
+		map.put("list", boardList);
+		return map;
+	}
+
+	//관리자 페이지 - 게시글 관리(공개여부)
+	public int changeStatus(Board b) {
+		return boardDao.changeStatus(b);
 	}
 }

@@ -47,6 +47,15 @@ public interface BoardDao {
 	//게시물 수정 - board테이블 변경
 	int updateBoard(Board b);
 
+	//관리자 페이지 - 게시글 관리
+	int adminTotalCount();
+
+	//관리자 페이지 - 게시글 관리
+	List adminBoardList(PageInfo pi);
+
+	//관리자 페이지 - 게시글 관리(공개여부)
+	int changeStatus(Board b);
+
 	
 
 }

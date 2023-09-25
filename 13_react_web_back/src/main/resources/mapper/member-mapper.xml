@@ -20,4 +20,23 @@
 	<update id="changePw">
 		update member_tbl set member_pw=#{memberPw} where member_id=#{memberId}
 	</update>
+	
+	<!-- 관리자 페이지 - 회원관리 -->
+	<select id="totalCount" resultType="int">
+		select count(*) from member_tbl
+	</select>
+	
+	<!-- 관리자 페이지 - 회원관리 -->
+	<select id="memberList" resultType="member">
+		select * from
+			(select rownum as rnum, m.* from
+				(select * from member_tbl order by member_type)
+			m)
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<!-- 관리자 페이지 - 회원관리(등급변경) -->
+	<update id="changeType">
+		update member_tbl set member_type=#{memberType} where member_no=#{memberNo}
+	</update>
 </mapper>

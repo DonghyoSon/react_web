@@ -74,6 +74,28 @@ const BoardView = (props) => {
     });
   };
 
+  //차단 버튼 함수
+  const changeStatus = () => {
+    const obj = { boardNo: board.boardNo, boardStatus: 2 };
+    const token = window.localStorage.getItem("token");
+    axios
+      .post("/board/changeStatus", obj, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        if (res.data === 1) {
+          Swal.fire("게시물이 차단되었습니다.");
+        } else {
+          Swal.fire("변경 중 문제가 발생하였습니다.");
+        }
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+
   return (
     <div className="board-view-wrap">
       <div className="board-view-title">{board.boardTitle}</div>
@@ -112,6 +134,11 @@ const BoardView = (props) => {
           ) : (
             ""
           )
+        ) : (
+          ""
+        )}
+        {member && member.memberType === 1 ? (
+          <Button1 text="차단" clickEvent={changeStatus} />
         ) : (
           ""
         )}

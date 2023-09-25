@@ -1,0 +1,8 @@
+.main-slide {
+  height: 700px;
+  overflow: hidden;
+}
+.main-slide img {
+  width: 100%;
+  height: 700px;
+}
